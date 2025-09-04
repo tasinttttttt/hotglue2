@@ -1,18 +1,9 @@
-FROM debian:buster-slim
-ENV DEBIAN_FRONTEND noninteractive
-WORKDIR /app/
+FROM php:8.3-apache
 
-RUN apt clean all
-RUN apt update
-RUN apt -y install nginx php php-fpm php-mysql nano curl php-xml cron php-curl php-gd php-mbstring composer php-imagick git
+# Enable mod_rewrite for .htaccess
+RUN a2enmod rewrite
 
-COPY nginx.conf /etc/nginx/sites-available/
-RUN ln -sf /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/default
+# Applies custom .htaccess
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-EXPOSE 80
-
-ENTRYPOINT ["/entrypoint.sh"]
-
+WORKDIR /var/www/html

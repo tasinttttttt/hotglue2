@@ -33,15 +33,15 @@ error_reporting(E_ALL & ~E_STRICT);						// see php documentation
 @define('FAVICON', 'img/favicon.ico');		// can be empty or an absolute url
 @define('HOTGLUE_VERSION', '1.0.4pre');		// expected api.version.patchlevel
 @define('IE8_COMPAT', true);				// try to be compatible with Internet Explorer 8 in viewing mode (also make sure that TEXT_USE_WOFF_FONTS is set to false)
-@define('JQUERY', 'js/jquery-1.5.2.min.js');// can be an absolute url
+@define('JQUERY', 'js/jquery-1.5.2.min.js'); // can be an absolute url
 @define('LOCK_TIME', 5000);					// maximum time in ms to wait for an object lock
 @define('LOG_FILE', 'content/log.txt');		// log file, must be writable
 @define('LOG_LEVEL', 'error');				// minimum log level (can be error, warn, info, debug)
 @define('SHORT_URLS', false);				// use short urls internally
 @define('SHOW_FRONTEND_ERRORS', true);
 @define('SITE_NAME', 'hotglue 1.0');
-@define('SNAPSHOT_MAX_AGE', 60*60*24*7);	// auto- revisions are automatically deleted after n seconds (zero to disable)
-@define('SNAPSHOT_MIN_AGE', 60*60);			// auto- revisions are created every n seconds (zero to disable)
+@define('SNAPSHOT_MAX_AGE', 60 * 60 * 24 * 7);	// auto- revisions are automatically deleted after n seconds (zero to disable)
+@define('SNAPSHOT_MIN_AGE', 60 * 60);			// auto- revisions are created every n seconds (zero to disable)
 @define('USE_HOTGLUE_ERRORS', true);		// use hotglue theming for error pages
 @define('USE_MIN_FILES', true);				// use minified files if possible (see also JQUERY define)
 // default modules
@@ -96,15 +96,15 @@ function base_url()
 		return $temp;
 	} elseif (!isset($base_url_cached)) {
 		if (!is_base_url_secure()) {
-			$base_url_cached = 'http://'.$_SERVER['HTTP_HOST'];
-			if ($_SERVER['SERVER_PORT'] != '80') {
-				$base_url_cached .= ':' . $_SERVER['SERVER_PORT'];
-			}
+			$base_url_cached = 'http://' . $_SERVER['HTTP_HOST'];
+			// if ($_SERVER['SERVER_PORT'] != '80') {
+			// 	$base_url_cached .= ':' . $_SERVER['SERVER_PORT'];
+			// }
 		} else {
-			$base_url_cached = 'https://'.$_SERVER['HTTP_HOST'];
-			if ($_SERVER['SERVER_PORT'] != '443' && $_SERVER['SERVER_PORT'] != '80') {
-				$base_url_cached .= ':' . $_SERVER['SERVER_PORT'];
-			}
+			$base_url_cached = 'https://' . $_SERVER['HTTP_HOST'];
+			// if ($_SERVER['SERVER_PORT'] != '443' && $_SERVER['SERVER_PORT'] != '80') {
+			// 	$base_url_cached .= ':' . $_SERVER['SERVER_PORT'];
+			// }
 		}
 		$base_url_cached .= dirname($_SERVER['PHP_SELF']);
 		// make sure we have a trailing slash at the end

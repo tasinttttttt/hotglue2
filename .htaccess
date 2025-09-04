@@ -37,17 +37,3 @@ RewriteRule ^(.*)$ index.php?$1
 <Files README>
   Require all denied
 </Files>
-
-# Apache 2.2
-#<Files COPYING>
-#	order deny,allow
-#	deny from all
-#</Files>
-#<Files INSTALL>
-#	order deny,allow
-#	deny from all
-#</Files>
-#<Files README>
-#	order deny,allow
-#	deny from all
-#</Files>
